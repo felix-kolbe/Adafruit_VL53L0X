@@ -46,7 +46,7 @@
     @returns True if device is set up, false on any failure
 */
 /**************************************************************************/
-boolean Adafruit_VL53L0X::begin(uint8_t i2c_addr, boolean debug ) {
+boolean Adafruit_VL53L0X::begin(WireClass& i2cInterface, uint8_t i2c_addr, boolean debug ) {
 
   uint32_t  refSpadCount;
   uint8_t   isApertureSpads;
@@ -54,6 +54,7 @@ boolean Adafruit_VL53L0X::begin(uint8_t i2c_addr, boolean debug ) {
   uint8_t   PhaseCal;
 
   // Initialize Comms
+  pMyDevice->i2cInterface    =  &i2cInterface;
   pMyDevice->I2cDevAddr      =  VL53L0X_I2C_ADDR;  // default
   pMyDevice->comms_type      =  1;
   pMyDevice->comms_speed_khz =  400;
