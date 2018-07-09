@@ -59,7 +59,7 @@ boolean Adafruit_VL53L0X::begin(WireClass& i2cInterface, uint8_t i2c_addr, boole
   pMyDevice->comms_type      =  1;
   pMyDevice->comms_speed_khz =  400;
 
-  Wire.begin();     // VL53L0X_i2c_init();
+//  VL53L0X_i2c_init();
 
   // unclear if this is even needed:
   if( VL53L0X_IMPLEMENTATION_VER_MAJOR != VERSION_REQUIRED_MAJOR ||
@@ -163,6 +163,63 @@ boolean Adafruit_VL53L0X::begin(WireClass& i2cInterface, uint8_t i2c_addr, boole
       Status = VL53L0X_SetLimitCheckValue( pMyDevice, VL53L0X_CHECKENABLE_RANGE_IGNORE_THRESHOLD, (FixPoint1616_t)( 1.5 * 0.023 * 65536 ) );
   }
 
+//  // BEST ACCURACY MODE - based on https://github.com/johnbryanmoore/VL53L0X_rasp_python/blob/master/python_lib/vl53l0x_python.c#L292  
+//  Serial.print("VL53L0X_BEST_ACCURACY_MODE\n");  
+//  if (Status == VL53L0X_ERROR_NONE)  
+//  {  
+//      Status = VL53L0X_SetLimitCheckValue(pMyDevice,  
+//                  VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE,  
+//                  (FixPoint1616_t)(0.25*65536));  
+//  
+//      if (Status == VL53L0X_ERROR_NONE)  
+//      {  
+//          Status = VL53L0X_SetLimitCheckValue(pMyDevice,  
+//                      VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE,  
+//                      (FixPoint1616_t)(18*65536));  
+//  
+//          if (Status == VL53L0X_ERROR_NONE)  
+//          {  
+//              Status =  
+//                  VL53L0X_SetMeasurementTimingBudgetMicroSeconds(pMyDevice, 200000);    
+//          }  
+//      }  
+//  }  
+
+  
+//  // Long range mode - based on https://github.com/johnbryanmoore/VL53L0X_rasp_python/blob/master/python_lib/vl53l0x_python.c#L292  
+//  Serial.print("VL53L0X_LONG_RANGE_MODE\n");  
+//  if (Status == VL53L0X_ERROR_NONE)  
+//  {  
+//      Status = VL53L0X_SetLimitCheckValue(pMyDevice,  
+//                  VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE,  
+//                  (FixPoint1616_t)(0.1*65536));  
+//  
+//      if (Status == VL53L0X_ERROR_NONE)  
+//      {  
+//          Status = VL53L0X_SetLimitCheckValue(pMyDevice,  
+//                      VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE,  
+//                      (FixPoint1616_t)(60*65536));  
+//  
+//          if (Status == VL53L0X_ERROR_NONE)  
+//          {  
+//              Status =  
+//                  VL53L0X_SetMeasurementTimingBudgetMicroSeconds(pMyDevice, 33000);  
+//  
+//              if (Status == VL53L0X_ERROR_NONE)  
+//              {  
+//                  Status = VL53L0X_SetVcselPulsePeriod(pMyDevice,  
+//                              VL53L0X_VCSEL_PERIOD_PRE_RANGE, 18);  
+//  
+//                  if (Status == VL53L0X_ERROR_NONE)  
+//                  {  
+//                      Status = VL53L0X_SetVcselPulsePeriod(pMyDevice,  
+//                                  VL53L0X_VCSEL_PERIOD_FINAL_RANGE, 14);  
+//                  }  
+//              }  
+//          }  
+//      }  
+//  }  
+  
   if( Status == VL53L0X_ERROR_NONE ) {
       return true;
   } else {
