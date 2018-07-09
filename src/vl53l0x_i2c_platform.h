@@ -1,5 +1,8 @@
 #include "Arduino.h"
-#include "Wire.h"
+//#include "Wire.h"
+#include <i2c_t3.h>  // specific I2C driver for Teensyduino 3
+
+typedef i2c_t3 WireClass;
 
 // initialize I2C
 int VL53L0X_i2c_init(TwoWire *i2c);

@@ -28,7 +28,9 @@
 #include "WProgram.h"
 #endif
 
-#include "Wire.h"
+//#include "Wire.h"
+#include <i2c_t3.h>  // specific I2C driver for Teensyduino 3
+
 #include "vl53l0x_api.h"
 
 #define VL53L0X_I2C_ADDR 0x29 ///< Default sensor I2C address
