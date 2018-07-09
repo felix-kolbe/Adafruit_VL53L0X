@@ -11,7 +11,7 @@ void setup() {
   }
   
   Serial.println("Adafruit VL53L0X test");
-  if (!lox.begin()) {
+  if (!lox.begin(VL53L0X_I2C_ADDR, true)) {
     Serial.println(F("Failed to boot VL53L0X"));
     while(1);
   }
